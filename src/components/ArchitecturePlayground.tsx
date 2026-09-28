@@ -21,6 +21,14 @@ import {
 
 type ProductId = "wallet" | "merchant" | "ledger";
 
+const formatAmount = (num: number) => {
+  const isDecimal = num % 1 !== 0;
+  const numStr = isDecimal ? num.toFixed(2) : num.toString();
+  const parts = numStr.split(".");
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  return parts.join(",");
+};
+
 export default function ArchitecturePlayground() {
   const [activeProduct, setActiveProduct] = useState<ProductId>("wallet");
 
@@ -46,7 +54,7 @@ export default function ArchitecturePlayground() {
     type: "DEBITO" | "CREDITO" | "COMISION";
     account: string;
     amount: number;
-    currency: "ARS" | "FTK";
+    currency: "ARS" | "DFX";
     highlight?: boolean;
   }>>([
     { id: "TX-9041", product: "Wallet B2C", type: "DEBITO", account: "Billetera User smart_acc...", amount: -2500, currency: "ARS" },
@@ -70,9 +78,9 @@ export default function ArchitecturePlayground() {
       
       const newTxId = "TX-" + Math.floor(Math.random() * 9000 + 1000);
       setTransactions(prev => [
-        { id: newTxId, product: "Wallet B2C", type: "DEBITO", account: "Scan QR User smart_wallet", amount: -1000, currency: "FTK", highlight: true },
-        { id: newTxId, product: "Merchant POS", type: "CREDITO", account: "POS Comercio FarmaTK vault", amount: 985, currency: "FTK", highlight: true },
-        { id: newTxId, product: "Platform Fee", type: "COMISION", account: "reDeFinX Revenue scoped", amount: 15, currency: "FTK", highlight: true },
+        { id: newTxId, product: "Wallet B2C", type: "DEBITO", account: "Scan QR User smart_wallet", amount: -1000, currency: "DFX", highlight: true },
+        { id: newTxId, product: "Merchant POS", type: "CREDITO", account: "POS Comercio DFX vault", amount: 985, currency: "DFX", highlight: true },
+        { id: newTxId, product: "Platform Fee", type: "COMISION", account: "reDeFinX Revenue scoped", amount: 15, currency: "DFX", highlight: true },
         ...prev.map(t => ({ ...t, highlight: false }))
       ]);
     }, 1800);
@@ -128,16 +136,16 @@ export default function ArchitecturePlayground() {
           </p>
         </div>
 
-        {/* Big Premium Product Typographic Selectors with Spring ease hover transitions */}
+        {/* Big Premium Product Typographic Selectors - Borderless Gradients */}
         <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-4">
           {/* Wallet selector */}
           <button
             onClick={() => setActiveProduct("wallet")}
             onMouseMove={handleMouseMove}
-            className={`p-6 text-left rounded-3xl border transition-all duration-[600ms] cubic-bezier(0.16, 1, 0.3, 1) relative overflow-hidden group ${
+            className={`p-6 text-left rounded-3xl transition-all duration-[600ms] cubic-bezier(0.16, 1, 0.3, 1) relative overflow-hidden group ${
               activeProduct === "wallet"
-                ? "bg-primary-brand/10 border-primary-brand/50 shadow-[0_0_30px_rgba(19,109,236,0.08)] scale-[1.02] -translate-y-1"
-                : "bg-background border-border-glow hover:border-primary-brand/20 text-muted-foreground"
+                ? "bg-gradient-to-br from-primary-brand/15 to-transparent text-foreground scale-[1.02] -translate-y-1 shadow-[0_30px_100px_-30px_rgba(19,109,236,0.15)]"
+                : "bg-transparent hover:bg-white/5 [.light_&]:hover:bg-slate-100 text-muted-foreground"
             }`}
           >
             <div className="card-spotlight" />
@@ -154,10 +162,10 @@ export default function ArchitecturePlayground() {
           <button
             onClick={() => setActiveProduct("merchant")}
             onMouseMove={handleMouseMove}
-            className={`p-6 text-left rounded-3xl border transition-all duration-[600ms] cubic-bezier(0.16, 1, 0.3, 1) relative overflow-hidden group ${
+            className={`p-6 text-left rounded-3xl transition-all duration-[600ms] cubic-bezier(0.16, 1, 0.3, 1) relative overflow-hidden group ${
               activeProduct === "merchant"
-                ? "bg-primary-brand/10 border-primary-brand/50 shadow-[0_0_30px_rgba(19,109,236,0.08)] scale-[1.02] -translate-y-1"
-                : "bg-background border-border-glow hover:border-primary-brand/20 text-muted-foreground"
+                ? "bg-gradient-to-br from-primary-brand/15 to-transparent text-foreground scale-[1.02] -translate-y-1 shadow-[0_30px_100px_-30px_rgba(19,109,236,0.15)]"
+                : "bg-transparent hover:bg-white/5 [.light_&]:hover:bg-slate-100 text-muted-foreground"
             }`}
           >
             <div className="card-spotlight" />
@@ -174,10 +182,10 @@ export default function ArchitecturePlayground() {
           <button
             onClick={() => setActiveProduct("ledger")}
             onMouseMove={handleMouseMove}
-            className={`p-6 text-left rounded-3xl border transition-all duration-[600ms] cubic-bezier(0.16, 1, 0.3, 1) relative overflow-hidden group ${
+            className={`p-6 text-left rounded-3xl transition-all duration-[600ms] cubic-bezier(0.16, 1, 0.3, 1) relative overflow-hidden group ${
               activeProduct === "ledger"
-                ? "bg-primary-brand/10 border-primary-brand/50 shadow-[0_0_30px_rgba(19,109,236,0.08)] scale-[1.02] -translate-y-1"
-                : "bg-background border-border-glow hover:border-primary-brand/20 text-muted-foreground"
+                ? "bg-gradient-to-br from-primary-brand/15 to-transparent text-foreground scale-[1.02] -translate-y-1 shadow-[0_30px_100px_-30px_rgba(19,109,236,0.15)]"
+                : "bg-transparent hover:bg-white/5 [.light_&]:hover:bg-slate-100 text-muted-foreground"
             }`}
           >
             <div className="card-spotlight" />
@@ -211,14 +219,14 @@ export default function ArchitecturePlayground() {
                 </p>
               </div>
 
-              {/* Action buttons tabs */}
+              {/* Action buttons tabs - Borderless Gradients */}
               <div className="space-y-3">
                 <button
                   onClick={() => setWalletAction("pay")}
-                  className={`w-full text-left p-4.5 rounded-2xl border transition-all duration-300 flex items-center justify-between ${
+                  className={`w-full text-left p-4.5 rounded-2xl transition-all duration-300 flex items-center justify-between ${
                     walletAction === "pay"
-                      ? "bg-primary-brand/10 border-primary-brand text-primary-brand shadow-sm scale-[1.01]"
-                      : "bg-background border-border-glow hover:border-primary-brand/20 text-muted-foreground"
+                      ? "bg-gradient-to-r from-primary-brand/15 to-transparent text-primary-brand scale-[1.01]"
+                      : "bg-transparent hover:bg-white/5 text-muted-foreground"
                   }`}
                 >
                   <div className="space-y-1">
@@ -233,10 +241,10 @@ export default function ArchitecturePlayground() {
 
                 <button
                   onClick={() => setWalletAction("stake")}
-                  className={`w-full text-left p-4.5 rounded-2xl border transition-all duration-300 flex items-center justify-between ${
+                  className={`w-full text-left p-4.5 rounded-2xl transition-all duration-300 flex items-center justify-between ${
                     walletAction === "stake"
-                      ? "bg-primary-brand/10 border-primary-brand text-primary-brand shadow-sm scale-[1.01]"
-                      : "bg-background border-border-glow hover:border-primary-brand/20 text-muted-foreground"
+                      ? "bg-gradient-to-r from-primary-brand/15 to-transparent text-primary-brand scale-[1.01]"
+                      : "bg-transparent hover:bg-white/5 text-muted-foreground"
                   }`}
                 >
                   <div className="space-y-1">
@@ -251,10 +259,10 @@ export default function ArchitecturePlayground() {
 
                 <button
                   onClick={() => setWalletAction("passkey")}
-                  className={`w-full text-left p-4.5 rounded-2xl border transition-all duration-300 flex items-center justify-between ${
+                  className={`w-full text-left p-4.5 rounded-2xl transition-all duration-300 flex items-center justify-between ${
                     walletAction === "passkey"
-                      ? "bg-primary-brand/10 border-primary-brand text-primary-brand shadow-sm scale-[1.01]"
-                      : "bg-background border-border-glow hover:border-primary-brand/20 text-muted-foreground"
+                      ? "bg-gradient-to-r from-primary-brand/15 to-transparent text-primary-brand scale-[1.01]"
+                      : "bg-transparent hover:bg-white/5 text-muted-foreground"
                   }`}
                 >
                   <div className="space-y-1">
@@ -283,14 +291,14 @@ export default function ArchitecturePlayground() {
                 </p>
               </div>
 
-              {/* Action buttons tabs */}
+              {/* Action buttons tabs - Borderless Gradients */}
               <div className="space-y-3">
                 <button
                   onClick={() => setMerchantAction("pos")}
-                  className={`w-full text-left p-4.5 rounded-2xl border transition-all duration-300 flex items-center justify-between ${
+                  className={`w-full text-left p-4.5 rounded-2xl transition-all duration-300 flex items-center justify-between ${
                     merchantAction === "pos"
-                      ? "bg-primary-brand/10 border-primary-brand text-primary-brand shadow-sm scale-[1.01]"
-                      : "bg-background border-border-glow hover:border-primary-brand/20 text-muted-foreground"
+                      ? "bg-gradient-to-r from-primary-brand/15 to-transparent text-primary-brand scale-[1.01]"
+                      : "bg-transparent hover:bg-white/5 text-muted-foreground"
                   }`}
                 >
                   <div className="space-y-1">
@@ -305,10 +313,10 @@ export default function ArchitecturePlayground() {
 
                 <button
                   onClick={() => setMerchantAction("sweep")}
-                  className={`w-full text-left p-4.5 rounded-2xl border transition-all duration-300 flex items-center justify-between ${
+                  className={`w-full text-left p-4.5 rounded-2xl transition-all duration-300 flex items-center justify-between ${
                     merchantAction === "sweep"
-                      ? "bg-primary-brand/10 border-primary-brand text-primary-brand shadow-sm scale-[1.01]"
-                      : "bg-background border-border-glow hover:border-primary-brand/20 text-muted-foreground"
+                      ? "bg-gradient-to-r from-primary-brand/15 to-transparent text-primary-brand scale-[1.01]"
+                      : "bg-transparent hover:bg-white/5 text-muted-foreground"
                   }`}
                 >
                   <div className="space-y-1">
@@ -337,8 +345,8 @@ export default function ArchitecturePlayground() {
                 </p>
               </div>
 
-              {/* Ledger visual specification panel */}
-              <div className="border border-border-glow p-5 rounded-2xl bg-background/55 text-xs space-y-4 font-light text-muted-foreground relative overflow-hidden">
+              {/* Ledger visual specification panel - Borderless Gradient */}
+              <div className="bg-gradient-to-br from-primary-brand/10 via-primary-brand/5 to-transparent p-5 rounded-2xl text-xs space-y-4 font-light text-muted-foreground relative overflow-hidden">
                 <div className="absolute inset-0 bg-primary-brand/[0.01] pointer-events-none" />
                 <div className="flex items-center gap-2 text-foreground font-bold relative z-10">
                   <Database className="w-4 h-4 text-primary-brand" />
@@ -358,7 +366,7 @@ export default function ArchitecturePlayground() {
 
         {/* RIGHT DYNAMIC HIGH-FIDELITY PREVIEW SCREENS (UNIFIED PERSPECTIVE CANVAS) */}
         <div 
-          className="lg:col-span-7 bg-[#080d16] dark:bg-[#03070c] rounded-[2.5rem] border border-primary-brand/10 p-6 md:p-8 flex items-center justify-center relative overflow-hidden min-h-[640px] shadow-2xl"
+          className="lg:col-span-7 bg-[#080d16] [.light_&]:bg-slate-50 dark:bg-[#03070c] rounded-[2.5rem] border border-primary-brand/10 [.light_&]:border-slate-200/80 p-6 md:p-8 flex items-center justify-center relative overflow-hidden min-h-[640px] shadow-2xl"
         >
           {/* Mesh lighting glow orb to make preview stand out */}
           <div className="absolute inset-0 bg-gradient-to-tr from-primary-brand/[0.03] to-transparent pointer-events-none" />
@@ -433,23 +441,23 @@ export default function ArchitecturePlayground() {
           {/* DYNAMIC CANVAS WRAPPER - Shifts focus sutilly depending on Active Tab */}
           <div className="relative w-full h-[580px] hidden lg:block">
             
-            {/* NODE A: WALLET MOCKUP (Left side of canvas) */}
+            {/* NODE A: WALLET MOCKUP (Left side of canvas) - Borderless Gradient Frame */}
             <div 
               onClick={() => setActiveProduct("wallet")}
               onMouseMove={handleMouseMove}
-              className={`absolute left-0 top-1/2 -translate-y-1/2 w-[270px] h-[550px] bg-[#0a0f16] rounded-[40px] border-[6px] transition-all duration-[800ms] cubic-bezier(0.16, 1, 0.3, 1) cursor-pointer select-none overflow-hidden flex flex-col ${
+              className={`absolute left-0 top-1/2 -translate-y-1/2 w-[270px] h-[550px] bg-gradient-to-br from-slate-950 to-slate-900 [.light_&]:from-white [.light_&]:to-slate-50 rounded-[40px] border-[2px] transition-all duration-[800ms] cubic-bezier(0.16, 1, 0.3, 1) cursor-pointer select-none overflow-hidden flex flex-col ${
                 activeProduct === "wallet"
-                  ? "opacity-100 scale-100 border-primary-brand/45 shadow-[0_0_40px_rgba(19,109,236,0.15)] z-20"
-                  : "opacity-35 scale-[0.92] border-gray-800 hover:opacity-55 hover:scale-[0.94] z-10 grayscale-[35%]"
+                  ? "opacity-100 scale-100 border-primary-brand/35 shadow-[0_30px_100px_-30px_rgba(19,109,236,0.15)] z-20"
+                  : "opacity-35 scale-[0.92] border-white/5 [.light_&]:border-slate-200 hover:opacity-55 hover:scale-[0.94] z-10 grayscale-[35%]"
               }`}
             >
               <div className="card-spotlight" />
               
               {/* Camera Notch */}
-              <div className="absolute top-2 left-1/2 -translate-x-1/2 w-20 h-4 bg-gray-800 rounded-full z-30" />
+              <div className="absolute top-2 left-1/2 -translate-x-1/2 w-20 h-4 bg-gray-900 [.light_&]:bg-slate-200 rounded-full z-30" />
 
               {/* Phone Content */}
-              <div className="flex-1 p-4 flex flex-col text-white relative z-10">
+              <div className="flex-1 p-4 flex flex-col text-white [.light_&]:text-slate-800 relative z-10">
                 {/* Status bar */}
                 <div className="flex justify-between items-center text-[7.5px] font-mono text-muted-foreground pt-1.5 px-2.5 mb-4">
                   <span>09:41</span>
@@ -465,13 +473,15 @@ export default function ArchitecturePlayground() {
                       <div className="flex-1 flex flex-col justify-between space-y-2">
                         <div className="space-y-3">
                           <p className="text-[7.5px] font-mono tracking-widest text-primary-brand uppercase text-center font-bold">Smart Wallet Pay</p>
-                          <div className="bg-[#111827] border border-white/5 p-3 rounded-2xl text-center">
+                          {/* Balance Display - borderless gradient */}
+                          <div className="bg-gradient-to-br from-primary-brand/15 to-transparent p-3 rounded-2xl text-center">
                             <p className="text-[6.5px] text-muted-foreground uppercase font-black tracking-widest">Saldo Disponible</p>
-                            <p className="text-lg font-black text-white mt-0.5">$ 42,850.00 <span className="text-xs text-primary-brand font-mono">FTK</span></p>
+                            <p className="text-lg font-black text-white [.light_&]:text-slate-800 mt-0.5">$ 42,850.00 <span className="text-xs text-primary-brand font-mono">DFX</span></p>
                           </div>
                         </div>
 
-                        <div className="flex-1 flex flex-col items-center justify-center border border-dashed border-white/10 rounded-2xl bg-white/5 p-4 space-y-3 text-center">
+                        {/* Scan Area - borderless gradient */}
+                        <div className="flex-1 flex flex-col items-center justify-center bg-gradient-to-b from-white/5 [.light_&]:from-slate-100 to-transparent rounded-2xl p-4 space-y-3 text-center">
                           <QrCode className="w-10 h-10 text-primary-brand" />
                           <button
                             onClick={(e) => { e.stopPropagation(); handlePaySuccess(); }}
@@ -492,7 +502,7 @@ export default function ArchitecturePlayground() {
                           <QrCode className="w-5 h-5 text-primary-brand animate-pulse" />
                         </div>
                         <div>
-                          <p className="text-[11px] font-bold text-white uppercase tracking-wider animate-pulse">Procesando pago...</p>
+                          <p className="text-[11px] font-bold text-white [.light_&]:text-slate-800 uppercase tracking-wider animate-pulse">Procesando pago...</p>
                           <p className="text-[7.5px] text-muted-foreground font-mono mt-1">Abstracción de Gas Patrocinada</p>
                         </div>
                       </div>
@@ -505,19 +515,19 @@ export default function ArchitecturePlayground() {
                             <CheckCircle className="w-6 h-6" />
                           </div>
                           <div>
-                            <h4 className="text-xs font-extrabold text-white">¡Pago Confirmado!</h4>
+                            <h4 className="text-xs font-extrabold text-white [.light_&]:text-slate-800">¡Pago Confirmado!</h4>
                             <p className="text-[8px] text-muted-foreground font-mono mt-0.5">Smart Tx Hash: 0x71d2...a984</p>
                           </div>
                         </div>
 
                         <div className="bg-emerald-500/5 border border-emerald-500/10 p-2.5 rounded-xl text-[8px] text-emerald-400 space-y-0.5 font-mono">
-                          <div>Monto: -1,000 FTK (1:1 ARS)</div>
-                          <div>Destino: POS Comercial FarmaTK</div>
+                          <div>Monto: -1,000 DFX (1:1 ARS)</div>
+                          <div>Destino: POS Comercial DFX</div>
                         </div>
 
                         <button 
                           onClick={(e) => { e.stopPropagation(); setPayState("idle"); }}
-                          className="w-full bg-white/5 border border-white/10 text-white text-[8px] py-1.5 rounded-lg mt-2 font-bold uppercase tracking-widest hover:bg-white/10 transition-all"
+                          className="w-full bg-white/5 border border-white/10 text-white [.light_&]:text-slate-800 text-[8px] py-1.5 rounded-lg mt-2 font-bold uppercase tracking-widest hover:bg-white/10 transition-all"
                         >
                           Pagar de nuevo
                         </button>
@@ -531,7 +541,8 @@ export default function ArchitecturePlayground() {
                     <div className="space-y-3">
                       <p className="text-[7.5px] font-mono tracking-widest text-primary-brand uppercase text-center font-bold">Stake & Earn en ARS</p>
                       
-                      <div className="bg-[#111827] border border-white/5 p-3 rounded-2xl text-center relative overflow-hidden">
+                      {/* Yield box - borderless gradient */}
+                      <div className="bg-gradient-to-br from-emerald-500/15 to-transparent p-3 rounded-2xl text-center relative overflow-hidden">
                         <div className="absolute top-0 right-0 w-10 h-10 bg-emerald-500/5 rounded-full filter blur-md" />
                         <p className="text-[6.5px] text-muted-foreground uppercase font-black tracking-widest">Rendimiento Anual (TNA)</p>
                         <p className="text-xl font-black text-emerald-400 mt-0.5">72.4%</p>
@@ -539,10 +550,11 @@ export default function ArchitecturePlayground() {
                       </div>
                     </div>
 
-                    <div className="space-y-3.5 bg-white/5 border border-white/10 p-3 rounded-2xl">
+                    {/* Amount slider panel - borderless gradient */}
+                    <div className="space-y-3.5 bg-gradient-to-r from-white/5 [.light_&]:from-slate-100 to-transparent p-3 rounded-2xl">
                       <div className="flex justify-between items-center text-[9px]">
                         <span className="text-muted-foreground">Monto a Invertir</span>
-                        <span className="font-mono font-bold text-white">$ {stakeAmount.toLocaleString()}</span>
+                        <span className="font-mono font-bold text-white [.light_&]:text-slate-850">$ {formatAmount(stakeAmount)}</span>
                       </div>
                       <input 
                         type="range" 
@@ -569,12 +581,12 @@ export default function ArchitecturePlayground() {
                   <div className="flex-1 flex flex-col justify-between text-center space-y-2">
                     <div className="space-y-1">
                       <p className="text-[7.5px] font-mono tracking-widest text-primary-brand uppercase font-bold">Onboarding OAuth 2.0</p>
-                      <h5 className="text-[11px] font-bold text-white">Login Social Marca Blanca</h5>
+                      <h5 className="text-[11px] font-bold text-white [.light_&]:text-slate-800">Login Social Marca Blanca</h5>
                     </div>
 
                     {passkeyState === "idle" && (
                       <div className="flex-1 flex flex-col justify-center space-y-3">
-                        <div className="w-10 h-10 rounded-full border border-white/10 bg-white/5 flex items-center justify-center mx-auto text-primary-brand">
+                        <div className="w-10 h-10 rounded-full border border-white/10 [.light_&]:border-slate-200 bg-white/5 [.light_&]:bg-slate-100 flex items-center justify-center mx-auto text-primary-brand">
                           <Lock className="w-4 h-4" />
                         </div>
                         <p className="text-[9px] text-muted-foreground leading-relaxed px-2 font-light">Utiliza el sensor biométrico del teléfono (FaceID / Passkeys) para firmar de forma inmutable.</p>
@@ -607,13 +619,13 @@ export default function ArchitecturePlayground() {
                           <CheckCircle className="w-5 h-5" />
                         </div>
                         <div>
-                          <p className="text-[10px] font-bold text-white">¡Biometría Enlazada!</p>
+                          <p className="text-[10px] font-bold text-white [.light_&]:text-slate-800">¡Biometría Enlazada!</p>
                           <p className="text-[7.5px] text-muted-foreground font-mono mt-0.5">Clave firmante MPC encriptada.</p>
                         </div>
                         
                         <button 
                           onClick={(e) => { e.stopPropagation(); setPasskeyState("idle"); }}
-                          className="bg-white/5 border border-white/10 text-white text-[8px] py-1 px-3 rounded-lg uppercase tracking-widest hover:bg-white/10 transition-all"
+                          className="bg-white/5 border border-white/10 text-white [.light_&]:text-slate-800 text-[8px] py-1 px-3 rounded-lg uppercase tracking-widest hover:bg-white/10 transition-all"
                         >
                           Reiniciar
                         </button>
@@ -624,31 +636,31 @@ export default function ArchitecturePlayground() {
               </div>
             </div>
 
-            {/* NODE B: MERCHANT POS MOCKUP (Right Top side of canvas) */}
+            {/* NODE B: MERCHANT POS MOCKUP (Right Top side of canvas) - Borderless Gradient */}
             <div 
               onClick={() => setActiveProduct("merchant")}
               onMouseMove={handleMouseMove}
-              className={`absolute right-0 top-0 w-[420px] h-[270px] bg-[#0a0f16] rounded-3xl border-[6px] transition-all duration-[800ms] cubic-bezier(0.16, 1, 0.3, 1) cursor-pointer select-none overflow-hidden flex flex-col text-white ${
+              className={`absolute right-0 top-0 w-[420px] h-[270px] bg-gradient-to-br from-slate-950/95 to-slate-900/90 [.light_&]:from-white [.light_&]:to-slate-50 rounded-3xl border transition-all duration-[800ms] cubic-bezier(0.16, 1, 0.3, 1) cursor-pointer select-none overflow-hidden flex flex-col text-white [.light_&]:text-slate-800 ${
                 activeProduct === "merchant"
-                  ? "opacity-100 scale-100 border-primary-brand/45 shadow-[0_0_40px_rgba(19,109,236,0.12)] z-20"
-                  : "opacity-35 scale-[0.92] border-gray-800 hover:opacity-55 hover:scale-[0.94] z-10 grayscale-[35%]"
+                  ? "opacity-100 scale-100 border-primary-brand/35 shadow-[0_30px_100px_-30px_rgba(19,109,236,0.15)] z-20"
+                  : "opacity-35 scale-[0.92] border-white/5 [.light_&]:border-slate-200 hover:opacity-55 hover:scale-[0.94] z-10 grayscale-[35%]"
               }`}
             >
               <div className="card-spotlight" />
               <div className="p-4 flex flex-col h-full relative z-10">
                 {/* Header */}
-                <div className="flex justify-between items-center border-b border-white/5 pb-2.5 mb-3">
+                <div className="flex justify-between items-center border-b border-white/5 [.light_&]:border-slate-200 pb-2.5 mb-3">
                   <div className="flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-primary-brand animate-pulse" />
-                    <span className="text-[8.5px] font-bold uppercase tracking-widest text-white">FarmaTK Merchant POS</span>
+                    <span className="text-[8.5px] font-bold uppercase tracking-widest text-white [.light_&]:text-slate-800">DFX Merchant POS</span>
                   </div>
-                  <span className="text-[7.5px] font-mono text-muted-foreground uppercase bg-white/5 px-2 py-0.5 rounded">Terminal 01</span>
+                  <span className="text-[7.5px] font-mono text-muted-foreground uppercase bg-white/5 [.light_&]:bg-slate-100 px-2 py-0.5 rounded">Terminal 01</span>
                 </div>
 
                 {merchantAction === "pos" && (
                   <div className="flex-1 grid grid-cols-12 gap-3.5">
-                    {/* Left QR Display (6 cols) */}
-                    <div className="col-span-6 flex flex-col justify-center items-center border border-white/5 bg-white/5 rounded-xl p-3 relative overflow-hidden">
+                    {/* Left QR Display (6 cols) - Borderless Gradient */}
+                    <div className="col-span-6 flex flex-col justify-center items-center bg-gradient-to-br from-white/5 [.light_&]:from-slate-100/50 to-transparent rounded-xl p-3 relative overflow-hidden">
                       {qrGenerated ? (
                         <div className="flex flex-col items-center space-y-2">
                           <div className="w-24 h-24 bg-white rounded-lg p-1.5 flex items-center justify-center shadow-md relative overflow-hidden">
@@ -678,7 +690,7 @@ export default function ArchitecturePlayground() {
                           value={chargeAmount}
                           onClick={(e) => e.stopPropagation()}
                           onChange={(e) => { setChargeAmount(e.target.value); setQrGenerated(false); }}
-                          className="w-full bg-[#111827] border border-white/5 rounded-lg px-2.5 py-1.5 text-white font-mono font-bold text-xs focus:outline-none focus:border-primary-brand"
+                          className="w-full bg-[#0a0f16] [.light_&]:bg-slate-100 border border-white/10 [.light_&]:border-slate-200 rounded-lg px-2.5 py-1.5 text-white [.light_&]:text-slate-850 font-mono font-bold text-xs focus:outline-none focus:border-primary-brand"
                           placeholder="Monto"
                         />
                         <p className="text-[6px] text-muted-foreground uppercase leading-relaxed font-light">Paridad fiduciaria $ARS 1:1.</p>
@@ -698,16 +710,17 @@ export default function ArchitecturePlayground() {
                 {merchantAction === "sweep" && (
                   <div className="flex-1 flex flex-col justify-between py-1">
                     <div className="space-y-1.5">
-                      <h5 className="text-[11px] font-bold text-white">Liquidación & Retiro de Cajas</h5>
+                      <h5 className="text-[11px] font-bold text-white [.light_&]:text-slate-800">Liquidación & Retiro de Cajas</h5>
                       <p className="text-[9px] text-muted-foreground leading-relaxed font-light">
                         Envía de forma automatizada o manual tus balances acumulados en la red digital a tu cuenta bancaria tradicional con compensación inmediata Coelsa.
                       </p>
                     </div>
 
-                    <div className="bg-[#111827]/85 border border-white/5 p-3 rounded-2xl flex justify-between items-center">
+                    {/* Sweep balance wrapper - borderless gradient */}
+                    <div className="bg-gradient-to-r from-white/5 [.light_&]:from-slate-100 to-transparent p-3 rounded-2xl flex justify-between items-center">
                       <div>
                         <span className="text-[6.5px] text-muted-foreground uppercase font-black tracking-widest">Saldo Liquidable</span>
-                        <span className="text-sm font-black text-white block mt-0.5">$ 142,500.00 ARS</span>
+                        <span className="text-sm font-black text-white [.light_&]:text-slate-850 block mt-0.5">$ 142,500.00 ARS</span>
                       </div>
                       <button
                         onClick={(e) => { e.stopPropagation(); handleSweepSuccess(); }}
@@ -726,7 +739,7 @@ export default function ArchitecturePlayground() {
                     )}
 
                     {sweepState === "success" && (
-                      <div className="bg-emerald-500/10 border border-emerald-500/20 p-2 rounded-xl text-[8px] text-emerald-400 text-center font-mono animate-bounce">
+                      <div className="bg-emerald-500/10 p-2 rounded-xl text-[8px] text-emerald-400 text-center font-mono animate-bounce">
                         ✓ Sweep asentado. Cuenta omnibus Coelsa acreditada.
                       </div>
                     )}
@@ -735,59 +748,117 @@ export default function ArchitecturePlayground() {
               </div>
             </div>
 
-            {/* NODE C: LEDGER TABLE MOCKUP (Right Bottom side of canvas) */}
+            {/* NODE C: LEDGER TABLE MOCKUP (Right Bottom side of canvas) - Borderless Gradient */}
             <div 
               onClick={() => setActiveProduct("ledger")}
               onMouseMove={handleMouseMove}
-              className={`absolute right-0 bottom-0 w-[420px] h-[270px] bg-[#0a0f16] rounded-3xl border-[6px] transition-all duration-[800ms] cubic-bezier(0.16, 1, 0.3, 1) cursor-pointer select-none overflow-hidden flex flex-col text-white ${
+              className={`absolute right-0 bottom-0 w-[420px] h-[270px] bg-gradient-to-br from-slate-950/95 to-slate-900/90 [.light_&]:from-white [.light_&]:to-slate-50 rounded-3xl border transition-all duration-[800ms] cubic-bezier(0.16, 1, 0.3, 1) cursor-pointer select-none overflow-hidden flex flex-col text-white [.light_&]:text-slate-800 ${
                 activeProduct === "ledger"
-                  ? "opacity-100 scale-100 border-primary-brand/45 shadow-[0_0_40px_rgba(19,109,236,0.12)] z-20"
-                  : "opacity-35 scale-[0.92] border-gray-800 hover:opacity-55 hover:scale-[0.94] z-10 grayscale-[35%]"
+                  ? "opacity-100 scale-100 border-primary-brand/35 shadow-[0_30px_100px_-30px_rgba(19,109,236,0.15)] z-20"
+                  : "opacity-35 scale-[0.92] border-white/5 [.light_&]:border-slate-200 hover:opacity-55 hover:scale-[0.94] z-10 grayscale-[35%]"
               }`}
             >
               <div className="card-spotlight" />
               <div className="p-4 flex flex-col h-full relative z-10">
                 {/* Header */}
-                <div className="flex justify-between items-center border-b border-white/5 pb-2.5 mb-2.5">
+                <div className="flex justify-between items-center border-b border-white/5 [.light_&]:border-slate-200 pb-2.5 mb-2.5">
                   <div className="flex items-center gap-1.5">
                     <Database className="w-3.5 h-3.5 text-primary-brand animate-pulse" />
-                    <span className="text-[8.5px] font-bold uppercase tracking-widest text-white">Central Transaction Ledger</span>
+                    <span className="text-[8.5px] font-bold uppercase tracking-widest text-white [.light_&]:text-slate-800">Central Transaction Ledger</span>
                   </div>
                   <span className="bg-emerald-500/10 text-emerald-400 text-[7px] font-mono px-2 py-0.5 rounded-full uppercase tracking-wider font-bold">Inmutable RLS</span>
                 </div>
 
-                {/* Transactions list */}
-                <div className="flex-1 flex flex-col justify-between overflow-hidden">
-                  <div className="space-y-1.5 overflow-y-auto max-h-[145px] pr-1 text-[8.5px] font-mono custom-scrollbar">
-                    <div className="grid grid-cols-12 text-[6.5px] text-gray-500 uppercase font-black pb-1 border-b border-white/5">
-                      <span className="col-span-3">Tx ID</span>
-                      <span className="col-span-6">Cuenta Scoped</span>
-                      <span className="col-span-3 text-right">Monto</span>
-                    </div>
+                {/* Main Content split side-by-side */}
+                <div className="flex-1 grid grid-cols-12 gap-4 overflow-hidden mt-1.5">
+                  
+                  {/* Left: Scoped Commercial Tree (5 cols) */}
+                  <div className="col-span-5 border-r border-white/5 [.light_&]:border-slate-200 pr-3 flex flex-col justify-between select-none">
+                    <span className="text-[6.5px] text-gray-500 uppercase font-black tracking-widest block mb-2">
+                      Árbol RLS Scoped
+                    </span>
+                    
+                    {/* Visual Vertical Node Tree */}
+                    <div className="flex-1 flex flex-col items-center justify-between py-1 relative">
+                      
+                      {/* Connection Line Background SVG */}
+                      <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ overflow: "visible" }}>
+                        {/* Vertical line from Corp to PSP */}
+                        <line x1="50%" y1="12" x2="50%" y2="34" stroke="rgba(255,255,255,0.06)" strokeWidth="1.5" strokeDasharray="3 3" className="dark:stroke-white/5 stroke-slate-900/10" />
+                        {/* Branching from PSP to POS & Wallet */}
+                        <path d="M 68 46 C 68 62, 34 62, 34 82" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="1.5" strokeDasharray="3 3" className="dark:stroke-white/5 stroke-slate-900/10" />
+                        {/* Right branch */}
+                        <path d="M 68 46 C 68 62, 102 62, 102 82" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="1.5" strokeDasharray="3 3" className="dark:stroke-white/5 stroke-slate-900/10" />
+                      </svg>
 
-                    {transactions.map((tx, idx) => (
-                      <div 
-                        key={idx} 
-                        className={`grid grid-cols-12 py-1 items-center border-b border-white/5/30 transition-colors duration-500 ${
-                          tx.highlight ? "bg-primary-brand/10 text-white font-bold" : "text-gray-300"
-                        }`}
-                      >
-                        <span className={`col-span-3 ${tx.highlight ? "text-primary-brand" : "text-gray-500"}`}>{tx.id}</span>
-                        <span className="col-span-6 truncate pr-1">{tx.account}</span>
-                        <span className={`col-span-3 text-right font-bold ${tx.amount < 0 ? 'text-red-400' : 'text-emerald-400'}`}>
-                          {tx.amount < 0 ? '' : '+'}{tx.amount.toLocaleString()} {tx.currency}
-                        </span>
+                      {/* Node 1: Root Corporate */}
+                      <div className="relative z-10 w-full flex justify-center">
+                        <div className={`px-2.5 py-1 rounded-lg bg-slate-900 border text-[7.5px] font-mono font-bold tracking-wide flex items-center gap-1 shadow-md transition-all duration-300 ${activeFlow === "sweep-ledger" ? "border-emerald-500 bg-emerald-500/10 shadow-[0_0_12px_rgba(16,185,129,0.15)] text-emerald-400" : "border-white/5 [.light_&]:border-slate-200 bg-slate-900 [.light_&]:bg-slate-100 text-gray-300 [.light_&]:text-slate-800"}`}>
+                          <Building className="w-2.5 h-2.5 text-primary-brand" />
+                          <span>reDeFinX Corp</span>
+                        </div>
                       </div>
-                    ))}
+
+                      {/* Node 2: PSP Gateway */}
+                      <div className="relative z-10 w-full flex justify-center">
+                        <div className={`px-2 py-0.5 rounded-md bg-slate-950 border border-white/5 [.light_&]:border-slate-200 text-[6.5px] font-mono text-gray-400 [.light_&]:text-slate-600 flex items-center gap-1 transition-all duration-300 bg-slate-950 [.light_&]:bg-slate-50`}>
+                          <ArrowRightLeft className="w-2 h-2 text-primary-brand animate-spin-slow" />
+                          <span>PSP Gateway</span>
+                                       {/* Node 3 & 4: Leaf nodes side by side */}
+                      <div className="relative z-10 w-full grid grid-cols-2 gap-2 mt-2">
+                        {/* Merchant POS */}
+                        <div className={`p-1.5 rounded-lg bg-slate-900 border text-center font-mono flex flex-col items-center justify-center transition-all duration-300 ${activeFlow === "pay-scan" || activeFlow === "pay-ledger" || activeFlow === "sweep-ledger" ? "border-emerald-500 bg-emerald-500/10 shadow-[0_0_12px_rgba(16,185,129,0.15)]" : "border-white/5 [.light_&]:border-slate-200 bg-slate-900 [.light_&]:bg-slate-100"}`}>
+                          <LayoutDashboard className="w-3.5 h-3.5 text-primary-brand mb-0.5" />
+                          <span className="text-[6px] font-bold text-white [.light_&]:text-slate-800 leading-none">Merchant POS</span>
+                          <span className="text-[5px] text-gray-500 mt-0.5">POS Comercio</span>
+                        </div>
+
+                        {/* Smart Wallet */}
+                        <div className={`p-1.5 rounded-lg bg-slate-900 border text-center font-mono flex flex-col items-center justify-center transition-all duration-300 ${activeFlow === "pay-scan" || activeFlow === "pay-ledger" ? "border-primary-brand bg-primary-brand/10 shadow-[0_0_12px_rgba(19,109,236,0.15)]" : "border-white/5 [.light_&]:border-slate-200 bg-slate-900 [.light_&]:bg-slate-100"}`}>
+                          <Smartphone className="w-3.5 h-3.5 text-secondary-brand mb-0.5" />
+                          <span className="text-[6px] font-bold text-white [.light_&]:text-slate-800 leading-none">Smart Wallet</span>
+                          <span className="text-[5px] text-gray-500 mt-0.5">Billetera B2C</span>
+                        </div>
+                      </div>          </div>
+                      </div>
+
+                    </div>
                   </div>
 
-                  <div className="border-t border-white/5 pt-2.5 mt-2 flex justify-between items-center bg-white/5 p-2.5 rounded-xl">
-                    <div className="flex items-center gap-1 text-[7.5px] text-muted-foreground uppercase font-bold tracking-wider">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                      Auditoría de Partida Doble
+                  {/* Right: Central Transaction Ledger (7 cols) */}
+                  <div className="col-span-7 flex flex-col justify-between overflow-hidden">
+                    <div className="space-y-1.5 overflow-y-auto max-h-[145px] pr-1 text-[8px] font-mono custom-scrollbar">
+                      <div className="grid grid-cols-12 text-[6px] text-gray-500 uppercase font-black pb-1 border-b border-white/5 [.light_&]:border-slate-200">
+                        <span className="col-span-3">Tx ID</span>
+                        <span className="col-span-6">Cuenta Scoped</span>
+                        <span className="col-span-3 text-right">Monto</span>
+                      </div>
+
+                      {transactions.map((tx, idx) => (
+                        <div 
+                          key={idx} 
+                          className={`grid grid-cols-12 py-1 items-center border-b border-white/5/30 [.light_&]:border-slate-200/50 transition-colors duration-500 ${
+                            tx.highlight ? "bg-primary-brand/10 text-white [.light_&]:text-slate-800 font-bold" : "text-gray-300 [.light_&]:text-slate-700"
+                          }`}
+                        >
+                          <span className={`col-span-3 ${tx.highlight ? "text-primary-brand" : "text-gray-500"}`}>{tx.id}</span>
+                          <span className="col-span-6 truncate pr-1">{tx.account}</span>
+                          <span className={`col-span-3 text-right font-bold ${tx.amount < 0 ? 'text-red-400' : 'text-emerald-400'}`}>
+                            {tx.amount < 0 ? '' : '+'}{formatAmount(tx.amount)} {tx.currency}
+                          </span>
+                        </div>
+                      ))}
                     </div>
-                    <span className="font-mono text-emerald-400 font-bold text-[9.5px]">SUM(Balance) = 0.00 ARS</span>
+
+                    <div className="border-t border-white/5 [.light_&]:border-slate-200 pt-2.5 mt-2 flex justify-between items-center bg-white/5 [.light_&]:bg-slate-100 p-2 rounded-xl">
+                      <div className="flex items-center gap-1 text-[7px] text-muted-foreground uppercase font-bold tracking-wider">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                        Partida Doble Check
+                      </div>
+                      <span className="font-mono text-emerald-400 font-bold text-[9px]">SUM(Balance) = 0.00 ARS</span>
+                    </div>
                   </div>
+
                 </div>
               </div>
             </div>
@@ -799,7 +870,7 @@ export default function ArchitecturePlayground() {
             
             {/* Responsive Wallet screen */}
             {activeProduct === "wallet" && (
-              <div className="w-full max-w-[310px] mx-auto bg-[#0a0f16] rounded-[40px] border-[5px] border-gray-800 p-4 shadow-xl relative aspect-[9/18.5] flex flex-col text-white overflow-hidden animate-fade-in-up">
+              <div className="w-full max-w-[310px] mx-auto bg-[#0a0f16] [.light_&]:bg-white rounded-[40px] border-[5px] border-gray-800 [.light_&]:border-slate-200 p-4 shadow-xl relative aspect-[9/18.5] flex flex-col text-white [.light_&]:text-slate-800 overflow-hidden animate-fade-in-up">
                 <div className="absolute top-2 left-1/2 -translate-x-1/2 w-20 h-4 bg-gray-800 rounded-full z-20" />
                 <div className="flex-1 p-1 flex flex-col justify-between">
                   <div className="flex justify-between items-center text-[7px] font-mono text-muted-foreground pt-1.5 px-2 mb-3">
@@ -813,7 +884,7 @@ export default function ArchitecturePlayground() {
                         <p className="text-[7.5px] font-mono text-primary-brand text-center uppercase tracking-widest font-bold">Smart Wallet Pay</p>
                         <div className="bg-[#111827] p-3 rounded-xl border border-white/5 text-center">
                           <p className="text-[6px] text-muted-foreground uppercase tracking-widest">Saldo</p>
-                          <p className="text-base font-black">$ 42,850.00 <span className="text-[10px] text-primary-brand">FTK</span></p>
+                          <p className="text-base font-black">$ 42,850.00 <span className="text-[10px] text-primary-brand">DFX</span></p>
                         </div>
                       </div>
                       <div className="flex-1 border border-dashed border-white/10 rounded-xl bg-white/5 flex flex-col items-center justify-center p-4 space-y-3">
@@ -838,7 +909,7 @@ export default function ArchitecturePlayground() {
                       <div className="space-y-2 bg-white/5 p-3 rounded-xl">
                         <div className="flex justify-between text-[8px]">
                           <span>Inversión</span>
-                          <span>$ {stakeAmount.toLocaleString()}</span>
+                          <span>$ {formatAmount(stakeAmount)}</span>
                         </div>
                         <input 
                           type="range" 
@@ -935,20 +1006,32 @@ export default function ArchitecturePlayground() {
                   <span className="bg-emerald-500/10 text-emerald-400 text-[6.5px] font-mono px-2 py-0.5 rounded-full">RLS ACTIVE</span>
                 </div>
 
+                {/* Micro Horizontal Tree on Mobile */}
+                <div className="flex justify-between items-center bg-white/5 border border-white/5 p-1.5 rounded-lg mb-2 text-[6px] font-mono select-none">
+                  <div className={`px-1.5 py-0.5 rounded border ${activeFlow === "sweep-ledger" ? "border-emerald-500 bg-emerald-500/10 text-emerald-400" : "border-white/5 text-gray-400"}`}>reDeFinX Corp</div>
+                  <div className="text-gray-600">➔</div>
+                  <div className="px-1 py-0.5 rounded border border-white/5 bg-slate-950 text-gray-400">PSP</div>
+                  <div className="text-gray-600">➔</div>
+                  <div className="flex gap-1">
+                    <div className={`px-1 py-0.5 rounded border ${activeFlow === "pay-scan" || activeFlow === "pay-ledger" || activeFlow === "sweep-ledger" ? "border-emerald-500 bg-emerald-500/10 text-emerald-400" : "border-white/5 text-gray-400"}`}>POS</div>
+                    <div className={`px-1 py-0.5 rounded border ${activeFlow === "pay-scan" || activeFlow === "pay-ledger" ? "border-primary-brand bg-primary-brand/10 text-primary-brand" : "border-white/5 text-gray-400"}`}>B2C</div>
+                  </div>
+                </div>
+
                 <div className="flex-1 flex flex-col justify-between overflow-hidden">
-                  <div className="space-y-1 overflow-y-auto max-h-[110px] text-[7.5px] font-mono pr-1 custom-scrollbar">
+                  <div className="space-y-1 overflow-y-auto max-h-[80px] text-[7px] font-mono pr-1 custom-scrollbar">
                     {transactions.map((tx, idx) => (
                       <div key={idx} className="flex justify-between py-0.5 border-b border-white/5">
                         <span className="text-gray-500">{tx.id}</span>
                         <span className="truncate max-w-[120px]">{tx.account}</span>
                         <span className={tx.amount < 0 ? 'text-red-400' : 'text-emerald-400'}>
-                          {tx.amount < 0 ? '' : '+'}{tx.amount.toLocaleString()} {tx.currency}
+                          {tx.amount < 0 ? '' : '+'}{formatAmount(tx.amount)} {tx.currency}
                         </span>
                       </div>
                     ))}
                   </div>
 
-                  <div className="bg-white/5 p-2 rounded-lg flex justify-between items-center text-[7.5px]">
+                  <div className="bg-white/5 p-2 rounded-lg flex justify-between items-center text-[7.5px] mt-1.5">
                     <span className="text-muted-foreground uppercase">Partida Doble Check</span>
                     <span className="text-emerald-400 font-bold">SUM(Balance) = 0.00 ARS</span>
                   </div>

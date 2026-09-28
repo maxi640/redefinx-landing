@@ -54,9 +54,9 @@ export default function LedgerSimulator() {
         setLogs((prev) => [
           ...prev,
           `[RULE CHECK] Aplicando Regla Contable 7 (Partida Doble Suma Cero)...`,
-          `[MINT/BURN] Retirando -${amount.toFixed(2)} FTK de balance de usuario...`,
-          `[SWEEP] Depositando +${netAmount.toFixed(2)} FTK en balance de comercio...`,
-          `[REVENUE] Asentando comisión de +${fee.toFixed(2)} FTK (1.5% Fee)...`
+          `[MINT/BURN] Retirando -${amount.toFixed(2)} DFX de balance de usuario...`,
+          `[SWEEP] Depositando +${netAmount.toFixed(2)} DFX en balance de comercio...`,
+          `[REVENUE] Asentando comisión de +${fee.toFixed(2)} DFX (1.5% Fee)...`
         ]);
       } else if (txType === "sweep") {
         splitEntries = [
@@ -66,7 +66,7 @@ export default function LedgerSimulator() {
         setLogs((prev) => [
           ...prev,
           `[RULE CHECK] Iniciando sweep asíncrono hacia cuenta bancaria central...`,
-          `[BURN] Quitando -${amount.toFixed(2)} FTK de la circulación on-chain...`,
+          `[BURN] Quitando -${amount.toFixed(2)} DFX de la circulación on-chain...`,
           `[BANK RAIL] Asentando transferencia fiat de $${amount.toFixed(2)} ARS por canal bancario tradicional...`
         ]);
       } else {
@@ -77,7 +77,7 @@ export default function LedgerSimulator() {
         setLogs((prev) => [
           ...prev,
           `[YIELD] Liquidando rendimiento acumulado...`,
-          `[LEDGER] Distribuyendo +${amount.toFixed(2)} FTK entre billeteras scoped...`
+          `[LEDGER] Distribuyendo +${amount.toFixed(2)} DFX entre billeteras scoped...`
         ]);
       }
 
@@ -121,7 +121,7 @@ export default function LedgerSimulator() {
                 onChange={(e) => setTxType(e.target.value as any)}
                 className="w-full bg-background border border-border-glow rounded-lg px-3 py-2.5 text-foreground text-xs font-semibold focus:outline-none focus:border-primary-brand"
               >
-                <option value="purchase">Compra en Comercio B2B (FTK)</option>
+                <option value="purchase">Compra en Comercio B2B (DFX)</option>
                 <option value="sweep">Sweep Bancario (Clear Fiat)</option>
                 <option value="yield">Distribución de Rendimiento</option>
               </select>
@@ -202,7 +202,7 @@ export default function LedgerSimulator() {
             <div className="space-y-3 mb-6">
               <div className="text-[10px] uppercase font-mono tracking-wider text-muted-foreground grid grid-cols-12 pb-1 border-b border-border-glow">
                 <span className="col-span-8">Cuenta Scoped</span>
-                <span className="col-span-4 text-right">Monto (FTK)</span>
+                <span className="col-span-4 text-right">Monto (DFX)</span>
               </div>
               <div className="space-y-2">
                 {entries.map((entry, idx) => (
