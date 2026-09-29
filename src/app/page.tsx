@@ -469,13 +469,13 @@ export default function Home() {
             <ThemeToggle />
             <a 
               href="#contacto" 
-              className="border border-white/10 [.light_&]:border-slate-200 hover:border-white/20 [.light_&]:hover:border-slate-300 bg-white/5 [.light_&]:bg-slate-100 hover:bg-white/10 [.light_&]:hover:bg-slate-200 text-white [.light_&]:text-slate-800 px-5 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all hover:scale-[1.02]"
+              className="border border-white/15 [.light_&]:border-slate-300 hover:border-white/25 [.light_&]:hover:border-slate-400 bg-white/5 [.light_&]:bg-slate-100 hover:bg-white/10 [.light_&]:hover:bg-slate-200 text-white [.light_&]:text-slate-800 px-5 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all hover:scale-[1.02] liquid-glass backdrop-blur-xl"
             >
               Hablemos
             </a>
             <a 
               href={loginUrl}
-              className="bg-primary-brand hover:bg-primary-brand/90 text-white px-5 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all hover:scale-[1.02] flex items-center gap-1.5 shadow-lg shadow-primary-brand/10 shimmer-btn"
+              className="bg-primary-brand hover:bg-primary-brand/90 text-white px-5 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all hover:scale-[1.02] flex items-center gap-1.5 shadow-lg shadow-primary-brand/20 shimmer-btn liquid-glass-button"
             >
               <LayoutDashboard className="w-3.5 h-3.5" />
               <span>Acceso</span>
@@ -511,7 +511,7 @@ export default function Home() {
           {/* Hero Texts (7 cols) */}
           <div className="lg:col-span-7 space-y-10 text-left">
             {/* Tag Badge */}
-            <div className="inline-flex items-center bg-[#070d19]/80 [.light_&]:bg-blue-50/80 border border-blue-500/20 [.light_&]:border-blue-200/60 px-3 py-1 rounded-[4px]">
+            <div className="inline-flex items-center bg-[#070d19]/80 [.light_&]:bg-blue-50/80 border border-blue-500/20 [.light_&]:border-blue-200/60 px-3 py-1 rounded-[4px] liquid-glass">
               <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse mr-2" />
               <span className="text-blue-400 [.light_&]:text-blue-600 text-[9px] font-bold uppercase tracking-[0.2em] font-mono">Suite Financiera Institucional Multi-Tenant</span>
             </div>
@@ -536,14 +536,14 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-5 pt-4">
               <a 
                 href="#soluciones" 
-                className="bg-primary-brand hover:bg-primary-brand/90 text-white font-bold px-10 py-4.5 rounded-full text-[10px] tracking-widest transition-all shadow-xl shadow-primary-brand/20 hover:scale-[1.02] flex items-center justify-center gap-2.5 shimmer-btn"
+                className="bg-primary-brand hover:bg-primary-brand/90 text-white font-bold px-10 py-4.5 rounded-full text-[10px] tracking-widest transition-all shadow-xl shadow-primary-brand/25 hover:scale-[1.02] flex items-center justify-center gap-2.5 shimmer-btn liquid-glass-button"
               >
                 <span>Explorar Soluciones</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
               <a 
                 href="#contacto" 
-                className="text-foreground hover:text-primary-brand font-mono font-bold px-8 py-4.5 text-[10px] tracking-widest transition-all flex items-center justify-center gap-1.5"
+                className="text-foreground hover:text-primary-brand font-mono font-bold px-8 py-4.5 text-[10px] tracking-widest transition-all flex items-center justify-center gap-1.5 hover:scale-[1.02]"
               >
                 <span>Hablemos</span>
                 <ChevronRight className="w-4 h-4" />
@@ -557,8 +557,13 @@ export default function Home() {
               onMouseMove={handleCardMouseMove}
               onMouseLeave={handleCardMouseLeave}
               style={cardStyle}
-              className="w-full max-w-[420px] aspect-[1.586] rounded-[18px] bg-gradient-to-br from-slate-900/95 via-slate-950/98 to-slate-900/95 border border-white/10 p-7 flex flex-col justify-between relative overflow-hidden select-none interactive-3d-card shadow-2xl cursor-pointer"
+              className="w-full max-w-[420px] aspect-[1.586] rounded-[22px] bg-gradient-to-br from-slate-900/95 via-slate-950/98 to-slate-900/95 border border-white/20 p-7 flex flex-col justify-between relative overflow-hidden select-none interactive-3d-card shadow-2xl cursor-pointer"
             >
+              {/* Top specular catch-light rim for LiquidGlass feel */}
+              <div 
+                aria-hidden="true" 
+                className="pointer-events-none absolute top-0 left-6 right-6 h-[1.5px] bg-gradient-to-r from-transparent via-white/50 to-transparent z-30" 
+              />
               {/* Ambient internal spotlight overlay */}
               <div className="absolute inset-0 bg-radial-gradient from-primary-brand/15 to-transparent pointer-events-none z-10" />
 
@@ -638,7 +643,7 @@ export default function Home() {
           {/* Map container */}
           <div 
             ref={mapContainerRef}
-            className={`relative w-full min-h-[640px] md:h-[600px] border border-white/5 [.light_&]:border-slate-200 bg-slate-950/20 [.light_&]:bg-white/40 rounded-3xl p-6 md:p-10 overflow-hidden select-none flex items-center justify-center transition-all duration-700 ${
+            className={`relative w-full min-h-[640px] md:h-[600px] liquid-glass-elevated border border-white/15 [.light_&]:border-blue-200/60 rounded-3xl p-6 md:p-10 overflow-hidden select-none flex items-center justify-center transition-all duration-700 shadow-2xl ${
               hoveredNode 
                 ? `map-has-active-hover ${
                     hoveredNode === nodeMetadata.bank ? "map-hover-bank" :
@@ -881,7 +886,9 @@ export default function Home() {
               
               {/* PREMIUM GLASSMORPHIC HUD TOOLTIP/POPUP FOR DESKTOP */}
               {hoveredNode && (
-                <div className={`absolute ${hoveredNode.popupClass} pointer-events-none z-50 transition-all duration-500 animate-fade-in bg-slate-950/90 [.light_&]:bg-white/95 backdrop-blur-md border border-white/10 [.light_&]:border-slate-200/80 rounded-2xl p-5.5 shadow-[0_15px_40px_rgba(0,0,0,0.8)] [.light_&]:shadow-[0_15px_40px_rgba(19,109,236,0.06)]`}>
+                <div className={`absolute ${hoveredNode.popupClass} pointer-events-none z-50 transition-all duration-500 animate-fade-in liquid-glass-elevated border border-white/20 [.light_&]:border-blue-200/80 rounded-2xl p-5.5 shadow-[0_20px_50px_rgba(0,0,0,0.85)] [.light_&]:shadow-[0_20px_45px_rgba(19,109,236,0.12)]`}>
+                  {/* Top specular catch-light rim */}
+                  <div aria-hidden="true" className="pointer-events-none absolute top-0 left-4 right-4 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent z-20" />
                   {/* Deep glowing soft aura behind the popup text */}
                   <div className="absolute -inset-8 bg-radial-gradient from-primary-brand/10 to-transparent blur-xl opacity-60 z-0 pointer-events-none" />
                   

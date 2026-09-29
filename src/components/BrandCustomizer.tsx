@@ -123,7 +123,7 @@ export default function BrandCustomizer() {
         <div className="absolute w-80 h-80 rounded-full glow-orb -top-20 -right-20 pointer-events-none opacity-20" />
 
         {/* Tab Selectors */}
-        <div className="flex gap-2 mb-6 bg-background/80 p-1 rounded-full border border-border-glow z-10 relative">
+        <div className="flex gap-2 mb-6 liquid-glass p-1 rounded-full border border-white/15 [.light_&]:border-slate-300 z-10 relative">
           <button
             onClick={() => setActiveTab("wallet")}
             className={`flex items-center gap-2 px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all cursor-pointer ${

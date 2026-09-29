@@ -366,8 +366,10 @@ export default function ArchitecturePlayground() {
 
         {/* RIGHT DYNAMIC HIGH-FIDELITY PREVIEW SCREENS (UNIFIED PERSPECTIVE CANVAS) */}
         <div 
-          className="lg:col-span-7 bg-[#080d16] [.light_&]:bg-slate-50 dark:bg-[#03070c] rounded-[2.5rem] border border-primary-brand/10 [.light_&]:border-slate-200/80 p-6 md:p-8 flex items-center justify-center relative overflow-hidden min-h-[640px] shadow-2xl"
+          className="lg:col-span-7 liquid-glass-elevated border border-primary-brand/20 [.light_&]:border-slate-200/80 rounded-[2.5rem] p-6 md:p-8 flex items-center justify-center relative overflow-hidden min-h-[640px] shadow-2xl"
         >
+          {/* Top specular catch-light rim */}
+          <div aria-hidden="true" className="pointer-events-none absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent z-20" />
           {/* Mesh lighting glow orb to make preview stand out */}
           <div className="absolute inset-0 bg-gradient-to-tr from-primary-brand/[0.03] to-transparent pointer-events-none" />
           <div className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full glow-orb opacity-10 pointer-events-none" />
