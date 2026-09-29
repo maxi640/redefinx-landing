@@ -1537,10 +1537,10 @@ export default function Home() {
                     <a href="/cnv-transparencia" className="hover:text-primary-brand transition-colors">Prueba de Reserva & Transparencia CNV (RG 1058/25)</a>
                   </li>
                   <li>
-                    <a href="/api/cnv/proof-of-reserves" target="_blank" className="hover:text-primary-brand transition-colors">API Proof of Reserves (JSON)</a>
+                    <a href="https://www.redefinx.com/api/cnv/proof-of-reserves" target="_blank" className="hover:text-primary-brand transition-colors">Consola & API Proof of Reserves (RG 1058/25)</a>
                   </li>
                   <li>
-                    <a href="/api/compliance/transactional-profiles" target="_blank" className="hover:text-primary-brand transition-colors">API Motor Dinámico de Perfilado UIF (SMVM / Res. 49/24)</a>
+                    <a href="https://www.redefinx.com/api/compliance/transactional-profiles" target="_blank" className="hover:text-primary-brand transition-colors">Consola & API Motor Dinámico PLAyFT (UIF Res. 49/24)</a>
                   </li>
                 </ul>
               </div>
