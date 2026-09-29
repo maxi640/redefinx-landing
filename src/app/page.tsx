@@ -70,8 +70,8 @@ const nodeMetadata = {
     popupClass: "top-[4%] left-[50%] -translate-x-1/2 w-[360px]"
   },
   orangeApis: {
-    title: "APIs de Salida, Topología Multi-Red y Prueba de Reserva",
-    description: "Endpoints de topología dinámica por Tenant (/api/wallet/capabilities), cotización y liquidación atómica sin fallbacks (/api/wallet/transfer/quote, /api/wallet/transfer, /api/wallet/balance, /api/wallet/swap-internal), Prueba de Reserva pública en tiempo real (/api/cnv/proof-of-reserves) y Régimen Informativo CNV (/api/admin/cnv/regulatory-report).",
+    title: "APIs de Salida, Topología Multi-Red y Saldo Segregado",
+    description: "Endpoints de topología dinámica por Tenant (/api/wallet/capabilities), saldos segregados Mainnet/Testnet (/api/wallet/balance), libreta de contactos y favoritos (/api/wallet/recipients), cotización y liquidación atómica sin fallbacks (/api/wallet/transfer/quote, /api/wallet/transfer, /api/wallet/swap-internal), historial transparente sin tecnicismos (/api/wallet/history), Prueba de Reserva pública en tiempo real (/api/cnv/proof-of-reserves) y Régimen Informativo CNV (/api/admin/cnv/regulatory-report).",
     type: "api" as const,
     popupClass: "top-[18%] right-[34%] w-[300px]"
   },
@@ -948,7 +948,7 @@ export default function Home() {
               </div>
               
               {/* Dynamic Live SVG transaction ripple chart inside card */}
-              <div className="relative h-28 w-full border border-white/5 [.light_&]:border-slate-200 bg-background/40 [.light_&]:bg-white/40 rounded-2xl overflow-hidden flex items-end p-2.5 z-10">
+              <div className="relative h-28 w-full bg-background/40 [.light_&]:bg-white/40 rounded-2xl overflow-hidden flex items-end p-2.5 z-10">
                 <div className="absolute top-2.5 left-3 flex items-center gap-1.5 font-mono text-[7.5px] text-emerald-400">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                   Rieles Activos (Compensación Instantánea)
@@ -968,7 +968,7 @@ export default function Home() {
             {/* Pilar 2 (Right Asymmetric - takes 5 cols) */}
             <div 
               onMouseMove={handleMouseMove}
-              className="lg:col-span-5 premium-card p-10 flex flex-col justify-between border-primary-brand/20 shadow-[0_0_30px_rgba(19,109,236,0.08)] cursor-default bento-unequal-height-1"
+              className="lg:col-span-5 premium-card p-10 flex flex-col justify-between shadow-[0_0_30px_rgba(19,109,236,0.08)] cursor-default bento-unequal-height-1"
             >
               <div className="card-spotlight" />
               <div className="space-y-4 relative z-10">
@@ -983,7 +983,7 @@ export default function Home() {
               </div>
               
               {/* Abstract glowing database connection nodes */}
-              <div className="relative h-28 w-full border border-white/5 [.light_&]:border-slate-200 bg-background/40 [.light_&]:bg-white/40 rounded-2xl flex items-center justify-center gap-12 z-10">
+              <div className="relative h-28 w-full bg-background/40 [.light_&]:bg-white/40 rounded-2xl flex items-center justify-center gap-12 z-10">
                 <div className="flex flex-col items-center">
                   <Building className="w-6 h-6 text-gray-500" />
                   <span className="text-[7px] text-gray-500 font-mono mt-1">FIAT BANK</span>
@@ -1013,7 +1013,7 @@ export default function Home() {
               </div>
               
               {/* Dynamic APY Counter */}
-              <div className="bg-[#111827] [.light_&]:bg-blue-50/50 border border-white/5 [.light_&]:border-blue-100 rounded-3xl p-6 flex flex-col justify-center items-center relative overflow-hidden min-w-[240px] z-10">
+              <div className="bg-[#111827] [.light_&]:bg-blue-50/50 rounded-3xl p-6 flex flex-col justify-center items-center relative overflow-hidden min-w-[240px] z-10">
                 <span className="text-[7.5px] font-mono uppercase text-muted-foreground tracking-[0.25em] mb-1">Rendimiento DeFi Corporativo</span>
                 <span className="text-4xl font-black text-emerald-400 font-mono tracking-tight leading-none animate-pulse">
                   {liveYield}% <span className="text-xs text-muted-foreground uppercase font-bold">APY</span>
@@ -1094,7 +1094,7 @@ export default function Home() {
                 </div>
                 
                 {/* Visual Asset Minting Simulator */}
-                <div className="md:col-span-5 border border-white/5 [.light_&]:border-slate-200 bg-background/55 [.light_&]:bg-slate-100/50 rounded-2xl p-4.5 flex flex-col items-center justify-center text-center space-y-3 relative overflow-hidden">
+                <div className="md:col-span-5 bg-background/55 [.light_&]:bg-slate-100/50 rounded-2xl p-4.5 flex flex-col items-center justify-center text-center space-y-3 relative overflow-hidden">
                   <div className="w-10 h-10 rounded-full border border-dashed border-primary-brand/40 flex items-center justify-center text-primary-brand animate-spin-slow">
                     <Layers className="w-5 h-5" />
                   </div>
@@ -1127,7 +1127,7 @@ export default function Home() {
                 </div>
                 
                 {/* Conversion Widget Simulator */}
-                <div className="bg-background/65 [.light_&]:bg-white/60 border border-white/5 [.light_&]:border-slate-200/80 p-3 rounded-xl flex items-center justify-between text-[9px] font-mono mt-3">
+                <div className="bg-background/65 [.light_&]:bg-white/60 p-3 rounded-xl flex items-center justify-between text-[9px] font-mono mt-3">
                   <div className="flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                     <span>ARS Stablecoin</span>
@@ -1158,7 +1158,7 @@ export default function Home() {
                 </div>
                 
                 {/* Micro Yield chart simulated */}
-                <div className="relative h-12 w-full border border-white/5 [.light_&]:border-slate-200 bg-background/40 [.light_&]:bg-white/40 rounded-xl overflow-hidden flex items-end">
+                <div className="relative h-12 w-full bg-background/40 [.light_&]:bg-white/40 rounded-xl overflow-hidden flex items-end">
                   <svg className="w-full h-8 opacity-20" viewBox="0 0 200 50" preserveAspectRatio="none">
                     <path d="M0,45 Q50,5 100,30 T200,10" fill="none" stroke="#10b981" strokeWidth="2" />
                   </svg>
@@ -1239,7 +1239,7 @@ export default function Home() {
               </div>
               
               {/* Infinite Scrolling compliance logs screen mock */}
-              <div className="md:w-80 h-32 border border-white/5 [.light_&]:border-slate-200 bg-[#080d16] [.light_&]:bg-slate-50 rounded-2xl overflow-hidden p-3 font-mono text-[7px] text-gray-500 [.light_&]:text-slate-600 relative flex flex-col z-10">
+              <div className="md:w-80 h-32 bg-[#080d16] [.light_&]:bg-slate-50 rounded-2xl overflow-hidden p-3 font-mono text-[7px] text-gray-500 [.light_&]:text-slate-600 relative flex flex-col z-10">
                 <div className="absolute top-2 left-3 flex items-center gap-1 text-primary-brand font-bold text-[7.5px] uppercase z-20">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary-brand animate-pulse" />
                   Compliance log stream
@@ -1404,7 +1404,7 @@ export default function Home() {
               </div>
 
               {/* Mock graphical vault representation inside bento */}
-              <div className="md:w-56 mt-4 md:mt-0 border border-white/5 [.light_&]:border-slate-200 bg-background/55 [.light_&]:bg-slate-100/50 rounded-2xl p-4 flex flex-col justify-center items-center text-center space-y-2 relative z-10">
+              <div className="md:w-56 mt-4 md:mt-0 bg-background/55 [.light_&]:bg-slate-100/50 rounded-2xl p-4 flex flex-col justify-center items-center text-center space-y-2 relative z-10">
                 <Shield className="w-8 h-8 text-emerald-400" />
                 <span className="text-[7.5px] font-mono text-gray-500 uppercase tracking-widest block">Bank Grade Security</span>
                 <span className="text-[9px] font-mono text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full uppercase">ISO 27001</span>
@@ -1456,9 +1456,9 @@ export default function Home() {
               </div>
 
               {/* Small graphic details */}
-              <div className="md:w-56 mt-4 md:mt-0 border border-white/5 [.light_&]:border-slate-200 bg-background/55 [.light_&]:bg-slate-100/50 rounded-2xl p-4 flex flex-col justify-center items-center text-center space-y-2 relative z-10">
+              <div className="md:w-56 mt-4 md:mt-0 bg-background/55 [.light_&]:bg-slate-100/50 rounded-2xl p-4 flex flex-col justify-center items-center text-center space-y-2 relative z-10">
                 <span className="text-[7.5px] font-mono text-gray-500 uppercase tracking-widest">Activo Digitalizado</span>
-                <span className="text-[10px] font-mono text-white [.light_&]:text-slate-800 font-bold uppercase tracking-wider bg-white/5 [.light_&]:bg-slate-100 border border-white/5 [.light_&]:border-slate-200 py-1 px-3.5 rounded-lg">Cereal Token #71</span>
+                <span className="text-[10px] font-mono text-white [.light_&]:text-slate-800 font-bold uppercase tracking-wider bg-white/5 [.light_&]:bg-slate-100 py-1 px-3.5 rounded-lg">Cereal Token #71</span>
               </div>
             </div>
 
@@ -1473,7 +1473,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-8 text-center space-y-12 relative z-10">
           <div 
             onMouseMove={handleMouseMove}
-            className="premium-card p-12 md:p-16 space-y-8 border-primary-brand/10 shadow-[0_0_50px_rgba(19,109,236,0.06)]"
+            className="premium-card p-12 md:p-16 space-y-8 shadow-[0_0_50px_rgba(19,109,236,0.06)]"
           >
             <div className="card-spotlight" />
             <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-foreground leading-tight relative z-10">
