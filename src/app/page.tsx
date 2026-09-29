@@ -1249,13 +1249,13 @@ export default function Home() {
                     <div>[INFO] RLS validation active for scoped Tenant...</div>
                     <div className="text-emerald-400">[PASS] Double-entry check balance total = 0.00 ARS</div>
                     <div>[SYNC] Compensating omnibus vault assets with central fids...</div>
-                    <div className="text-primary-brand">[MINT] Issued smart_bond #1024 (RWA debt share)</div>
+                    <div className="text-primary-brand">[SWAP] Settled USDC/ARS order via Cuentas de Orden (RG CNV 1058/25)</div>
                     <div>[KYC] Verification completed for new white-label member...</div>
                     <div>[INFO] Gas abstraction proxy verified for OAuth login...</div>
                     <div>[INFO] RLS validation active for scoped Tenant...</div>
                     <div className="text-emerald-400">[PASS] Double-entry check balance total = 0.00 ARS</div>
                     <div>[SYNC] Compensating omnibus vault assets with central fids...</div>
-                    <div className="text-primary-brand">[MINT] Issued smart_bond #1024 (RWA debt share)</div>
+                    <div className="text-primary-brand">[SWAP] Settled USDC/ARS order via Cuentas de Orden (RG CNV 1058/25)</div>
                     <div>[KYC] Verification completed for new white-label member...</div>
                     <div>[INFO] Gas abstraction proxy verified for OAuth login...</div>
                   </div>

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.redefinx.com"),
   title: "reDeFinX Platform | Infraestructura de Convergencia Financiera",
   description: "El punto de encuentro donde la solidez de la banca tradicional se integra con la eficiencia de los activos digitales. Suite multi-tenant marca blanca de tesorería, comercios y wallets.",
-  keywords: ["Fintech", "Web3", "Account Abstraction", "RWA", "Stablecoins", "Bento Grid", "White Label", "PSAVaaS"],
+  keywords: ["Fintech", "Web3", "Account Abstraction", "Cuentas de Orden", "Stablecoins", "Bento Grid", "White Label", "PSAVaaS", "CNV RG 1058/25"],
   authors: [{ name: "reDeFinX Team" }],
   icons: {
     icon: "/icon.png",
