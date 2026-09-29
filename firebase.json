@@ -59,9 +59,10 @@
         ]
       }
     ],
+    "cleanUrls": true,
     "rewrites": [
       {
-        "source": "**",
+        "source": "!@(_next/**|*.css|*.js|*.png|*.jpg|*.jpeg|*.svg|*.ico|*.woff2|*.mp4)",
         "destination": "/index.html"
       }
     ]
