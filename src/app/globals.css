@@ -242,37 +242,39 @@ html, body {
   animation: fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Replaced Boxy Premium Cards with Borderless Fluid Gradient Fields */
+/* 3D Glassmorphism Premium Cards with Mouse-Following Spotlight */
 .premium-card {
   position: relative;
-  background: radial-gradient(120% 120% at 10% 10%, rgba(30, 41, 59, 0.15) 0%, rgba(10, 15, 22, 0.0) 80%);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.015); /* Faint structural edge */
-  box-shadow: none;
-  border-radius: 32px;
+  background: linear-gradient(135deg, rgba(17, 24, 39, 0.45) 0%, rgba(10, 15, 22, 0.7) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5), 
+              inset 0 1px 0 0 rgba(255, 255, 255, 0.04);
+  border-radius: 28px;
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
-              background 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
               box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  overflow: visible; /* Let glowing effects bleed naturally */
+  overflow: hidden;
   z-index: 1;
 }
 
 .light .premium-card {
-  background: radial-gradient(120% 120% at 10% 10%, rgba(19, 109, 236, 0.03) 0%, rgba(255, 255, 255, 0.1) 80%);
-  border: 1px solid rgba(0, 0, 0, 0.015);
-  box-shadow: none;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(244, 247, 250, 0.9) 100%);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.04), 
+              inset 0 1px 0 0 rgba(255, 255, 255, 0.6);
 }
 
-/* Card border glow following mouse (faded out) */
+/* Card border glow following mouse */
 .premium-card::before {
   content: '';
   position: absolute;
   inset: 0;
-  border-radius: 32px;
+  border-radius: 28px;
   padding: 1px;
   background: radial-gradient(
     500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(19, 109, 236, 0.12),
+    rgba(19, 109, 236, 0.22),
     transparent 50%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -287,7 +289,7 @@ html, body {
 .light .premium-card::before {
   background: radial-gradient(
     500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(19, 109, 236, 0.07),
+    rgba(19, 109, 236, 0.12),
     transparent 50%
   );
 }
@@ -302,7 +304,7 @@ html, body {
   inset: 0;
   background: radial-gradient(
     350px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(19, 109, 236, 0.07),
+    rgba(19, 109, 236, 0.05),
     transparent 80%
   );
   opacity: 0;
@@ -314,7 +316,7 @@ html, body {
 .light .card-spotlight {
   background: radial-gradient(
     350px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(19, 109, 236, 0.04),
+    rgba(19, 109, 236, 0.03),
     transparent 80%
   );
 }
@@ -324,16 +326,16 @@ html, body {
 }
 
 .premium-card:hover {
-  transform: translateY(-4px);
-  background: radial-gradient(120% 120% at 20% 20%, rgba(19, 109, 236, 0.09) 0%, rgba(10, 15, 22, 0.0) 90%);
-  border-color: rgba(19, 109, 236, 0.06);
-  box-shadow: 0 30px 100px -30px rgba(19, 109, 236, 0.15);
+  transform: translateY(-6px) scale(1.008);
+  border-color: rgba(19, 109, 236, 0.15);
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.6), 
+              0 0 30px 0 rgba(19, 109, 236, 0.12);
 }
 
 .light .premium-card:hover {
-  background: radial-gradient(120% 120% at 20% 20%, rgba(19, 109, 236, 0.06) 0%, rgba(255, 255, 255, 0.6) 90%);
-  border-color: rgba(19, 109, 236, 0.04);
-  box-shadow: 0 30px 100px -30px rgba(19, 109, 236, 0.03);
+  border-color: rgba(19, 109, 236, 0.1);
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.05), 
+              0 0 30px 0 rgba(19, 109, 236, 0.02);
 }
 
 /* Floating background mesh containers */
