@@ -70,8 +70,8 @@ const nodeMetadata = {
     popupClass: "top-[4%] left-[50%] -translate-x-1/2 w-[360px]"
   },
   orangeApis: {
-    title: "APIs de Salida, Liquidez y Prueba de Reserva",
-    description: "Endpoints de liquidación atómica (/api/wallet/balance, /api/wallet/swap-internal), Prueba de Reserva pública en tiempo real (/api/cnv/proof-of-reserves) y Régimen Informativo CNV (/api/admin/cnv/regulatory-report).",
+    title: "APIs de Salida, Topología Multi-Red y Prueba de Reserva",
+    description: "Endpoints de topología dinámica por Tenant (/api/wallet/capabilities), cotización y liquidación atómica sin fallbacks (/api/wallet/transfer/quote, /api/wallet/transfer, /api/wallet/balance, /api/wallet/swap-internal), Prueba de Reserva pública en tiempo real (/api/cnv/proof-of-reserves) y Régimen Informativo CNV (/api/admin/cnv/regulatory-report).",
     type: "api" as const,
     popupClass: "top-[18%] right-[34%] w-[300px]"
   },
