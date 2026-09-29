@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YoHub WaaS V5 — Core Financiero Multi-Tenant & Ledger Inmutable</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased selection:bg-blue-600 selection:text-white">
+  <header class="border-b border-white/10 bg-slate-950/90 backdrop-blur sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-2xl bg-blue-600 flex items-center justify-center font-black text-lg">Y</div>
+        <div>
+          <span class="font-black text-xl tracking-tight">YoHub <span class="text-blue-500">Core V5</span></span>
+          <p class="text-[10px] uppercase tracking-widest text-slate-400">PSAV CNV RG 1058/25 • Multi-Tenant WaaS</p>
+        </div>
+      </div>
+      <nav class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest">
+        <a href="/wallet/login" class="px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10">Wallet</a>
+        <a href="/merchant/login" class="px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10">Merchant POS</a>
+        <a href="/master" class="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white">Orquestador Master</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-6 py-20 space-y-24">
+    <section class="text-center max-w-4xl mx-auto space-y-6">
+      <span class="px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-black uppercase tracking-widest">
+        Convergencia Integral de los 4 Diagramas Fundacionales
+      </span>
+      <h1 class="text-5xl md:text-6xl font-black tracking-tighter leading-none">
+        Infraestructura Financiera <span class="text-blue-500">White-Label</span> de 6 Niveles
+      </h1>
+      <p class="text-slate-400 text-lg leading-relaxed">
+        Motor contable de partida doble con invariante de suma cero, jerarquía de transacciones
+        <strong>ORIGINAL + COMPLEMENTARY</strong>, y catálogo universal de activos para bancos, fintechs y redes comerciales.
+      </p>
+    </section>
+
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="p-8 rounded-3xl bg-slate-900/80 border border-white/10 space-y-4">
+        <span class="text-xs font-black uppercase tracking-widest text-emerald-400">Pilar 1 & 2 • API Única B2B</span>
+        <h3 class="text-2xl font-black">Motor de Settlement Rules</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">
+          Integración unificada mediante <code>/api/v1/b2b/transactions/quote</code> y
+          <code>/api/v1/b2b/transactions/execute</code> con enrutamiento dinámico por Corporate y cascada automática de comisiones.
+        </p>
+      </div>
+
+      <div class="p-8 rounded-3xl bg-slate-900/80 border border-white/10 space-y-4">
+        <span class="text-xs font-black uppercase tracking-widest text-blue-400">Pilar 3 • Árbol Comercial (ltree)</span>
+        <h3 class="text-2xl font-black">Jerarquía de 6 Niveles</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">
+          Trazabilidad completa <code>Holding &rarr; Corporate &rarr; Partner &rarr; Merchant &rarr; Subsidiary</code>
+          y delegación familiar/operativa <code>Wallet &rarr; Son</code> con políticas <code>allow_inbound</code> y <code>allow_outbound</code>.
+        </p>
+      </div>
+
+      <div class="p-8 rounded-3xl bg-slate-900/80 border border-white/10 space-y-4">
+        <span class="text-xs font-black uppercase tracking-widest text-amber-400">Pilar 1 & 4 • Catálogo Universal</span>
+        <h3 class="text-2xl font-black">Multi-Producto & IAM 360</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">
+          Soporte nativo para <strong>Fiat, Crypto, Stablecoins, Miles, Points, RWA y Rewards</strong> bajo una única identidad global operando simultáneamente en múltiples Corporates.
+        </p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
