@@ -1537,10 +1537,10 @@ export default function Home() {
                     <a href="/cnv-transparencia" className="hover:text-primary-brand transition-colors">Prueba de Reserva & Transparencia CNV (RG 1058/25)</a>
                   </li>
                   <li>
-                    <a href="/api/cnv/proof-of-reserves" className="hover:text-primary-brand transition-colors">API Proof of Reserves (JSON)</a>
+                    <a href="/api/cnv/proof-of-reserves" target="_blank" className="hover:text-primary-brand transition-colors">API Proof of Reserves (JSON)</a>
                   </li>
                   <li>
-                    <a href="/api/admin/compliance/transactional-profiles" className="hover:text-primary-brand transition-colors">API Motor Dinámico de Perfilado UIF (SMVM / Res. 49/24)</a>
+                    <a href="/api/compliance/transactional-profiles" target="_blank" className="hover:text-primary-brand transition-colors">API Motor Dinámico de Perfilado UIF (SMVM / Res. 49/24)</a>
                   </li>
                 </ul>
               </div>
@@ -1580,7 +1580,7 @@ export default function Home() {
             {/* Mandatory CNV RG 1058/25 Art. 5 & Art. 36 + UIF Res. 49/2024 Disclosure */}
             <div className="border-t border-white/5 [.light_&]:border-slate-200 py-6 text-left space-y-2">
               <p className="text-[8.5px] leading-relaxed opacity-80">
-                <strong>CUMPLIMIENTO NORMATIVO RG CNV N° 1058/25 (Art. 5, 15, 16, 36 y 37) & UIF RES. 49/2024:</strong> CASH INVERSIONES S.A. / Ecosistema YoHub — Proveedor de Servicios de Activos Virtuales (PSAV) inscripto bajo el N° 70 en el Registro de Proveedores de Servicios de Activos Virtuales de CNV. Este registro es a los fines del control como Sujeto Obligado ante la Unidad de Información Financiera (UIF) y de todo otro ente regulador facultado a tal efecto, en el marco de sus competencias, y no implica licencia ni supervisión por parte de la COMISIÓN NACIONAL DE VALORES sobre la actividad realizada por el PSAV. El Core Transaccional aplica perfilado dinámico PLAyFT auto-indexado en Salarios Mínimos, Vitales y Móviles (SMVM), Travel Rule y límites móviles (24h/30d/365d) auditados atómicamente en el Ledger V5. Consulte en <a href="/cnv-transparencia" className="underline text-primary-brand">/cnv-transparencia</a> la pantalla obligatoria sobre &ldquo;Naturaleza y riesgos a los que los clientes están expuestos al realizar operaciones con Activos Virtuales&rdquo; (Art. 36), los Whitepapers oficiales (Art. 37) y la Prueba de Reserva criptográfica en Cuentas de Orden (Art. 15 y 16).
+                <strong>INFRAESTRUCTURA REGULATORIA Y CUMPLIMIENTO RG CNV N° 1058/25 & UIF RES. 49/2024:</strong> reDeFinX opera como Proveedor Tecnológico Multi-Tenant de Infraestructura Fiduciaria y de Activos Virtuales (PSAVaaS Core). La plataforma brinda arquitectura institucional con segregación estricta de fondos en Cuentas de Orden (MEMORANDUM_CLIENT), conciliación en tiempo real en Ledger V5 (Art. 15 y 16), inmutabilidad criptográfica con Merkle Tree SHA-256 (Art. 20 y 38) y motor dinámico de perfilado transaccional PLAyFT indexado en Salarios Mínimos, Vitales y Móviles (SMVM) conforme a las exigencias de la Unidad de Información Financiera (UIF) y de la Comisión Nacional de Valores (CNV). Los Proveedores de Servicios de Activos Virtuales (PSAV) y clientes corporativos integrados operan bajo sus correspondientes inscripciones registrales independientes. Consulte en <a href="/cnv-transparencia" className="underline text-primary-brand">/cnv-transparencia</a> el Centro Público de Transparencia, la Matriz de Riesgos al Consumidor (Art. 36), el Directorio Oficial de Whitepapers (Art. 37) y la Prueba de Reserva criptográfica en vivo.
               </p>
             </div>
 
